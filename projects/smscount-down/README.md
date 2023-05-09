@@ -1,24 +1,54 @@
-# SMSCountDown
+# NGX-SMSCountDown
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+在注册或登录页面常有 发送短信验证码或邮箱验证码等数秒操作
 
-## Code scaffolding
+[![NPM version](https://img.shields.io/npm/v/ngx-smscountdown.svg)](https://www.npmjs.com/package/ngx-smscountdown)
 
-Run `ng generate component component-name --project SMSCountDown` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project SMSCountDown`.
-> Note: Don't forget to add `--project SMSCountDown` or else it will be added to the default project in your `angular.json` file. 
+## Usage
 
-## Build
+### 1. Install
 
-Run `ng build SMSCountDown` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+npm install ngx-smscountdown --save
+```
 
-## Publishing
+import `SMSCountDownModule`。
 
-After building your library with `ng build SMSCountDown`, go to the dist folder `cd dist/smscount-down` and run `npm publish`.
+```typescript
+import { SMSCountDownModule } from 'smscount-down;
 
-## Running unit tests
+@NgModule({
+  imports: [ BrowserModule, SMSCountDownModule ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-Run `ng test SMSCountDown` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 2、Template
 
-## Further help
+```html
+<button SMSCountDown Text="发送短信验证码" CountText="{leftSec}秒后可重发" [SendFun]="sendSMS">发送短信验证码</button>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<button SMSCountDown Text="发送邮箱验证码" CountText="重发剩余{leftSec}秒..." CompleteText="重新发送" [MaxCounting]="8" [SendFun]="sendSMS">发送邮箱验证码</button>
+```
+
+```typescript
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  sendSMS = async ()=>{
+    let result = new Promise<boolean>((resolve, reject) => {
+      setTimeout(() => {
+        console.log('发送成功')
+        resolve(true);
+      }, 1000);
+    })
+    return result
+  } 
+}
+
+```
