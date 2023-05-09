@@ -1,27 +1,34 @@
-# App1
+# NGX-SMSCountDown
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5.
+在注册或登录页面常有 发送短信验证码或邮箱验证码等数秒操作
 
-## Development server
+[![NPM version](https://img.shields.io/npm/v/smscount-down.svg)](https://www.npmjs.com/package/ngx-smscount-down)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Usage
 
-## Code scaffolding
+### 1. Install
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+npm install ngx-smscountdown --save
+```
 
-## Build
+import `SMSCountDownModule`。
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```typescript
+import { SMSCountDownModule } from 'smscount-down;
 
-## Running unit tests
+@NgModule({
+  imports: [ BrowserModule, SMSCountDownModule ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 2、Template
 
-## Running end-to-end tests
+```html
+<button SMSCountDown Text="发送短信验证码" CountText="{leftSec}秒后可重发" [SendFun]="sendSMS">发送短信验证码</button>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<button SMSCountDown Text="发送邮箱验证码" CountText="重发剩余{leftSec}秒..." CompleteText="重新发送" [MaxCounting]="8" [SendFun]="sendSMS">发送邮箱验证码</button>
+```

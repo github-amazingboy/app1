@@ -2,6 +2,15 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "SMSCountDown": [
+        "dist/smscount-down",
+        "dist/smscount-down"
+      ],
+      "ngx-SMSCountDown": [
+        "dist/ngx-smscount-down"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app1';
+  sendSMS = async ()=>{
+    let result = new Promise<boolean>((resolve, reject) => {
+      setTimeout(() => {
+        console.log('发送成功')
+        resolve(true);
+      }, 1000);
+    })
+    return result
+  } 
 }
